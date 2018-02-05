@@ -167,7 +167,7 @@ while True:
                                     client.sendText(receiver, str(e))
                             elif text.lower() == 'speed':
                                 start = time.time()
-                                client.sendText(receiver, "speed")
+                                client.sendText(receiver, "速度回報")
                                 elapsed_time = time.time() - start
                                 client.sendText(receiver, "%sdetik" % (elapsed_time))
                             elif 'spic' in text.lower():
@@ -241,7 +241,7 @@ while True:
                                     for m in range(401, len(nama)):
                                         nm5 += [nama[m]]
                                     client.mention(receiver, nm5)             
-                                client.sendText(receiver, "Members :"+str(jml))
+                                client.sendText(receiver, "被標記人數 :"+str(jml))
                             elif text.lower() == 'ceksider':
                                 try:
                                     del cctv['point'][receiver]
@@ -364,7 +364,7 @@ while True:
                                     client.sendText(receiver, str(e))
                             elif text.lower() == 'speed':
                                 start = time.time()
-                                client.sendText(receiver, "speed")
+                                client.sendText(receiver, "速度回報")
                                 elapsed_time = time.time() - start
                                 client.sendText(receiver, "%sdetik" % (elapsed_time))
                             elif 'spic' in text.lower():
