@@ -257,7 +257,7 @@ while True:
                                     cctv['cyduk'][receiver]=False
                                     client.sendText(receiver, cctv['sidermem'][msg.to])
                                 else:
-                                    client.sendText(receiver, "看到訊息者")
+                                    client.sendText(receiver, "很抱歉你尚未開始記錄")
                             elif text.lower() == 'mode:self':
                                 mode = 'self'
                                 client.sendText(receiver, 'Mode Public Off')
