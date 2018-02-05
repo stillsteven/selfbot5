@@ -94,7 +94,7 @@ while True:
                                     cmid = client.getContact(u).mid
                                     cstatus = client.getContact(u).statusMessage
                                     cpic = client.getContact(u).picturePath
-                                    client.sendText(receiver, 'Nama : '+cname+'\nMID : '+cmid+'\nStatus Msg : '+cstatus+'\nPicture : http://dl.profile.line.naver.jp'+cpic)
+                                    client.sendText(receiver, '名稱 : '+cname+'\nMID : '+cmid+'\n個性簽名: '+cstatus+'\n頭像 : http://dl.profile.line.naver.jp'+cpic)
                                     client.sendMessage(receiver, None, contentMetadata={'mid': cmid}, contentType=13)
                                     if client.getContact(u).videoProfile != None:
                                         client.sendVideoWithURL(receiver, 'http://dl.profile.line.naver.jp'+cpic+'/vp.small')
@@ -165,7 +165,7 @@ while True:
                                     client.sendText(receiver, str(A))
                                 except Exception as e:
                                     client.sendText(receiver, str(e))
-                            elif text.lower() == 'speed':
+                            elif text.lower() == '測速':
                                 start = time.time()
                                 client.sendText(receiver, "速度回報")
                                 elapsed_time = time.time() - start
@@ -242,7 +242,7 @@ while True:
                                         nm5 += [nama[m]]
                                     client.mention(receiver, nm5)             
                                 client.sendText(receiver, "被標記人數 :"+str(jml))
-                            elif text.lower() == 'ceksider':
+                            elif text.lower() == 'set':
                                 try:
                                     del cctv['point'][receiver]
                                     del cctv['sidermem'][receiver]
@@ -252,12 +252,12 @@ while True:
                                 cctv['point'][receiver] = msg.id
                                 cctv['sidermem'][receiver] = ""
                                 cctv['cyduk'][receiver]=True
-                            elif text.lower() == 'offread':
+                            elif text.lower() == 'print':
                                 if msg.to in cctv['point']:
                                     cctv['cyduk'][receiver]=False
                                     client.sendText(receiver, cctv['sidermem'][msg.to])
                                 else:
-                                    client.sendText(receiver, "Heh belom di Set")
+                                    client.sendText(receiver, "看到訊息者")
                             elif text.lower() == 'mode:self':
                                 mode = 'self'
                                 client.sendText(receiver, 'Mode Public Off')
@@ -291,7 +291,7 @@ while True:
                                     cmid = client.getContact(u).mid
                                     cstatus = client.getContact(u).statusMessage
                                     cpic = client.getContact(u).picturePath
-                                    client.sendText(receiver, 'Nama : '+cname+'\nMID : '+cmid+'\nStatus Msg : '+cstatus+'\nPicture : http://dl.profile.line.naver.jp'+cpic)
+                                    client.sendText(receiver, '名稱 : '+cname+'\nMID : '+cmid+'\n個性簽名 : '+cstatus+'\n頭像 : http://dl.profile.line.naver.jp'+cpic)
                                     client.sendMessage(receiver, None, contentMetadata={'mid': cmid}, contentType=13)
                                     if client.getContact(u).videoProfile != None:
                                         client.sendVideoWithURL(receiver, 'http://dl.profile.line.naver.jp'+cpic+'/vp.small')
@@ -362,7 +362,7 @@ while True:
                                     client.sendText(receiver, str(A))
                                 except Exception as e:
                                     client.sendText(receiver, str(e))
-                            elif text.lower() == 'speed':
+                            elif text.lower() == '測速':
                                 start = time.time()
                                 client.sendText(receiver, "速度回報")
                                 elapsed_time = time.time() - start
@@ -398,7 +398,7 @@ while True:
                                 pass
                             else:
                                 cctv['sidermem'][op.param1] += "\n~ " + Name
-                                pref=['eh ada','hai kak','aloo..','nah','lg ngapain','halo','sini kak']
+                                pref=['記錄','記錄','記錄','記錄','記錄','記錄','記錄']
                                 client.sendText(op.param1, str(random.choice(pref))+' '+Name)
                         else:
                             pass
