@@ -55,7 +55,7 @@ while True:
                                     cc = bb.link
                                     textt = bb.text
                                     client.sendText(receiver, 'Link: ' + str(cc) + '\nText: ' + str(textt) + '\nMaker: ' + str(aa))
-                            elif text.lower() == 'unsend me':
+                            elif text.lower() == '收回訊息':
                                 client.unsendMessage(msg_id)
                             elif text.lower() == 'getsq':
                                 a = client.getJoinedSquares()
@@ -86,7 +86,7 @@ while True:
                                     client.sendText(receiver, 'Done Like+Comment '+str(len(st))+' Post From' + str(s))
                                 except Exception as e:
                                     client.sendText(receiver, str(e))
-                            elif 'gc ' in text.lower():
+                            elif '資料 ' in text.lower():
                                 try:
                                     key = eval(msg.contentMetadata["MENTION"])
                                     u = key["MENTIONEES"][0]["M"]
@@ -102,7 +102,7 @@ while True:
                                         client.sendImageWithURL(receiver, 'http://dl.profile.line.naver.jp'+cpic)
                                 except Exception as e:
                                     client.sendText(receiver, str(e))
-                            elif 'sticker:' in msg.text.lower():
+                            elif '貼圖:' in msg.text.lower():
                                 try:
                                     query = msg.text.replace("sticker:", "")
                                     query = int(query)
@@ -113,7 +113,7 @@ while True:
                                         client.sendText(receiver, 'gunakan key sticker angka bukan huruf')
                                 except Exception as e:
                                     client.sendText(receiver, str(e))
-                            elif "yt:" in msg.text.lower():
+                            elif "影片:" in msg.text.lower():
                                 try:
                                     query = msg.text.replace("yt:", "")
                                     query = query.replace(" ", "+")
@@ -121,14 +121,14 @@ while True:
                                     client.sendText(receiver, x)
                                 except Exception as e:
                                     client.sendText(receiver, str(e))
-                            elif "image:" in msg.text.lower():
+                            elif "圖片:" in msg.text.lower():
                                 try:
                                     query = msg.text.replace("image:", "")
                                     images = client.image_search(query)
                                     client.sendImageWithURL(receiver, images)
                                 except Exception as e:
                                     client.sendText(receiver, str(e))
-                            elif 'say:' in msg.text.lower():
+                            elif '說:' in msg.text.lower():
                                 try:
                                     isi = msg.text.lower().replace('say:','')
                                     tts = gTTS(text=isi, lang='id', slow=False)
@@ -170,7 +170,7 @@ while True:
                                 client.sendText(receiver, "速度回報")
                                 elapsed_time = time.time() - start
                                 client.sendText(receiver, "%sdetik" % (elapsed_time))
-                            elif 'spic' in text.lower():
+                            elif '頭貼' in text.lower():
                                 try:
                                     key = eval(msg.contentMetadata["MENTION"])
                                     u = key["MENTIONEES"][0]["M"]
@@ -181,7 +181,7 @@ while True:
                                         client.sendImageWithURL(receiver, 'http://dl.profile.line.naver.jp/'+a)
                                 except Exception as e:
                                     client.sendText(receiver, str(e))
-                            elif 'scover' in text.lower():
+                            elif '背景' in text.lower():
                                 try:
                                     key = eval(msg.contentMetadata["MENTION"])
                                     u = key["MENTIONEES"][0]["M"]
@@ -258,13 +258,13 @@ while True:
                                     client.sendText(receiver, cctv['sidermem'][msg.to])
                                 else:
                                     client.sendText(receiver, "很抱歉你尚未開始記錄")
-                            elif text.lower() == 'mode:self':
+                            elif text.lower() == '關閉':
                                 mode = 'self'
-                                client.sendText(receiver, 'Mode Public Off')
-                            elif text.lower() == 'mode:public':
+                                client.sendText(receiver, '已關閉公開')
+                            elif text.lower() == '開啟':
                                 mode = 'public'
-                                client.sendText(receiver, 'Mode Public ON')
-                            elif text.lower() == 'restart':
+                                client.sendText(receiver, '已開啟公開')
+                            elif text.lower() == '重新開始':
                                 restart_program()
                 except Exception as e:
                     client.log("[SEND_MESSAGE] ERROR : " + str(e))
@@ -283,7 +283,7 @@ while True:
                             if text.lower() == 'me':
                                 client.sendMessage(receiver, None, contentMetadata={'mid': sender}, contentType=13)
                                 client.tag(receiver, sender)
-                            elif 'gc ' in text.lower():
+                            elif '資料 ' in text.lower():
                                 try:
                                     key = eval(msg.contentMetadata["MENTION"])
                                     u = key["MENTIONEES"][0]["M"]
@@ -299,7 +299,7 @@ while True:
                                         client.sendImageWithURL(receiver, 'http://dl.profile.line.naver.jp'+cpic)
                                 except Exception as e:
                                     client.sendText(receiver, str(e))                            
-                            elif 'sticker:' in msg.text.lower():
+                            elif '貼圖:' in msg.text.lower():
                                 try:
                                     query = msg.text.replace("sticker:", "")
                                     query = int(query)
@@ -310,7 +310,7 @@ while True:
                                         client.sendText(receiver, 'gunakan key sticker angka bukan huruf')
                                 except Exception as e:
                                     client.sendText(receiver, str(e))
-                            elif "yt:" in msg.text.lower():
+                            elif "影片:" in msg.text.lower():
                                 try:
                                     query = msg.text.replace("yt:", "")
                                     query = query.replace(" ", "+")
@@ -318,14 +318,14 @@ while True:
                                     client.sendText(receiver, x)
                                 except Exception as e:
                                     client.sendText(receiver, str(e))
-                            elif "image:" in msg.text.lower():
+                            elif "圖片:" in msg.text.lower():
                                 try:
                                     query = msg.text.replace("image:", "")
                                     images = client.image_search(query)
                                     client.sendImageWithURL(receiver, images)
                                 except Exception as e:
                                     client.sendText(receiver, str(e))
-                            elif 'say:' in msg.text.lower():
+                            elif '說:' in msg.text.lower():
                                 try:
                                     isi = msg.text.lower().replace('say:','')
                                     tts = gTTS(text=isi, lang='id', slow=False)
@@ -367,7 +367,7 @@ while True:
                                 client.sendText(receiver, "速度回報")
                                 elapsed_time = time.time() - start
                                 client.sendText(receiver, "%sdetik" % (elapsed_time))
-                            elif 'spic' in text.lower():
+                            elif '頭貼' in text.lower():
                                 try:
                                     key = eval(msg.contentMetadata["MENTION"])
                                     u = key["MENTIONEES"][0]["M"]
@@ -378,7 +378,7 @@ while True:
                                         client.sendImageWithURL(receiver, 'http://dl.profile.line.naver.jp/'+a)
                                 except Exception as e:
                                     client.sendText(receiver, str(e))
-                            elif 'scover' in text.lower():
+                            elif '背景' in text.lower():
                                 try:
                                     key = eval(msg.contentMetadata["MENTION"])
                                     u = key["MENTIONEES"][0]["M"]
