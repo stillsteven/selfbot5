@@ -47,45 +47,8 @@ while True:
                             contact = client.getContact(sender)
                             if text.lower() == 'me':
                                 client.sendMessage(receiver, None, contentMetadata={'mid': sender}, contentType=13)
-                            elif text.lower() == 'announce':
-                                gett = client.getChatRoomAnnouncements(receiver)
-                                for a in gett:
-                                    aa = client.getContact(a.creatorMid).displayName
-                                    bb = a.contents
-                                    cc = bb.link
-                                    textt = bb.text
-                                    client.sendText(receiver, 'Link: ' + str(cc) + '\nText: ' + str(textt) + '\nMaker: ' + str(aa))
                             elif text.lower() == '收回訊息':
                                 client.unsendMessage(msg_id)
-                            elif text.lower() == 'getsq':
-                                a = client.getJoinedSquares()
-                                squares = a.squares
-                                members = a.members
-                                authorities = a.authorities
-                                statuses = a.statuses
-                                noteStatuses = a.noteStatuses
-                                txt = str(squares)+'\n\n'+str(members)+'\n\n'+str(authorities)+'\n\n'+str(statuses)+'\n\n'+str(noteStatuses)+'\n\n'
-                                txt2 = ''
-                                for i in range(len(squares)):
-                                    txt2 += str(i+1)+'. '+str(squares[i].invitationURL)+'\n'
-                                client.sendText(receiver, txt2)
-                            elif 'lc ' in text.lower():
-                                try:
-                                    typel = [1001,1002,1003,1004,1005,1006]
-                                    key = eval(msg.contentMetadata["MENTION"])
-                                    u = key["MENTIONEES"][0]["M"]
-                                    a = client.getContact(u).mid
-                                    s = client.getContact(u).displayName
-                                    hasil = channel.getHomeProfile(mid=a)
-                                    st = hasil['result']['feeds']
-                                    for i in range(len(st)):
-                                        test = st[i]
-                                        result = test['post']['postInfo']['postId']
-                                        channel.like(str(sender), str(result), likeType=random.choice(typel))
-                                        channel.comment(str(sender), str(result), 'Auto Like by nrik')
-                                    client.sendText(receiver, 'Done Like+Comment '+str(len(st))+' Post From' + str(s))
-                                except Exception as e:
-                                    client.sendText(receiver, str(e))
                             elif '資料 ' in text.lower():
                                 try:
                                     key = eval(msg.contentMetadata["MENTION"])
@@ -100,17 +63,6 @@ while True:
                                         client.sendVideoWithURL(receiver, 'http://dl.profile.line.naver.jp'+cpic+'/vp.small')
                                     else:
                                         client.sendImageWithURL(receiver, 'http://dl.profile.line.naver.jp'+cpic)
-                                except Exception as e:
-                                    client.sendText(receiver, str(e))
-                            elif '貼圖:' in msg.text.lower():
-                                try:
-                                    query = msg.text.replace("sticker:", "")
-                                    query = int(query)
-                                    if type(query) == int:
-                                        client.sendImageWithURL(receiver, 'https://stickershop.line-scdn.net/stickershop/v1/product/'+str(query)+'/ANDROID/main.png')
-                                        client.sendText(receiver, 'https://line.me/S/sticker/'+str(query))
-                                    else:
-                                        client.sendText(receiver, 'gunakan key sticker angka bukan huruf')
                                 except Exception as e:
                                     client.sendText(receiver, str(e))
                             elif "影片:" in msg.text.lower():
@@ -136,40 +88,11 @@ while True:
                                     client.sendAudio(receiver, 'temp.mp3')
                                 except Exception as e:
                                     client.sendText(receiver, str(e))
-                            elif 'apakah ' in msg.text.lower():
-                                try:
-                                    txt = ['iya','tidak','bisa jadi']
-                                    isi = random.choice(txt)
-                                    tts = gTTS(text=isi, lang='id', slow=False)
-                                    tts.save('temp2.mp3')
-                                    client.sendAudio(receiver, 'temp2.mp3')
-                                except Exception as e:
-                                    client.sendText(receiver, str(e))
-                            elif "sytr:" in msg.text:
-                                try:
-                                    isi = msg.text.split(":")
-                                    translator = Translator()
-                                    hasil = translator.translate(isi[2], dest=isi[1])
-                                    A = hasil.text
-                                    tts = gTTS(text=A, lang=isi[1], slow=False)
-                                    tts.save('temp3.mp3')
-                                    client.sendAudio(receiver, 'temp3.mp3')
-                                except Exception as e:
-                                    client.sendText(receiver, str(e))
-                            elif "tr:" in msg.text:
-                                try:
-                                    isi = msg.text.split(":")
-                                    translator = Translator()
-                                    hasil = translator.translate(isi[2], dest=isi[1])
-                                    A = hasil.text                               
-                                    client.sendText(receiver, str(A))
-                                except Exception as e:
-                                    client.sendText(receiver, str(e))
                             elif text.lower() == '測速':
                                 start = time.time()
                                 client.sendText(receiver, "速度回報")
                                 elapsed_time = time.time() - start
-                                client.sendText(receiver, "%sdetik" % (elapsed_time))
+                                client.sendText(receiver, "%sseconds" % (elapsed_time))
                             elif '頭貼' in text.lower():
                                 try:
                                     key = eval(msg.contentMetadata["MENTION"])
@@ -298,17 +221,6 @@ while True:
                                     else:
                                         client.sendImageWithURL(receiver, 'http://dl.profile.line.naver.jp'+cpic)
                                 except Exception as e:
-                                    client.sendText(receiver, str(e))                            
-                            elif '貼圖:' in msg.text.lower():
-                                try:
-                                    query = msg.text.replace("sticker:", "")
-                                    query = int(query)
-                                    if type(query) == int:
-                                        client.sendImageWithURL(receiver, 'https://stickershop.line-scdn.net/stickershop/v1/product/'+str(query)+'/ANDROID/main.png')
-                                        client.sendText(receiver, 'https://line.me/S/sticker/'+str(query))
-                                    else:
-                                        client.sendText(receiver, 'gunakan key sticker angka bukan huruf')
-                                except Exception as e:
                                     client.sendText(receiver, str(e))
                             elif "影片:" in msg.text.lower():
                                 try:
@@ -318,48 +230,12 @@ while True:
                                     client.sendText(receiver, x)
                                 except Exception as e:
                                     client.sendText(receiver, str(e))
-                            elif "圖片:" in msg.text.lower():
-                                try:
-                                    query = msg.text.replace("image:", "")
-                                    images = client.image_search(query)
-                                    client.sendImageWithURL(receiver, images)
-                                except Exception as e:
-                                    client.sendText(receiver, str(e))
                             elif '說:' in msg.text.lower():
                                 try:
                                     isi = msg.text.lower().replace('say:','')
                                     tts = gTTS(text=isi, lang='id', slow=False)
                                     tts.save('temp.mp3')
                                     client.sendAudio(receiver, 'temp.mp3')
-                                except Exception as e:
-                                    client.sendText(receiver, str(e))
-                            elif 'apakah ' in msg.text.lower():
-                                try:
-                                    txt = ['iya','tidak','bisa jadi']
-                                    isi = random.choice(txt)
-                                    tts = gTTS(text=isi, lang='id', slow=False)
-                                    tts.save('temp2.mp3')
-                                    client.sendAudio(receiver, 'temp2.mp3')
-                                except Exception as e:
-                                    client.sendText(receiver, str(e))
-                            elif "sytr:" in msg.text:
-                                try:
-                                    isi = msg.text.split(":")
-                                    translator = Translator()
-                                    hasil = translator.translate(isi[2], dest=isi[1])
-                                    A = hasil.text
-                                    tts = gTTS(text=A, lang=isi[1], slow=False)
-                                    tts.save('temp3.mp3')
-                                    client.sendAudio(receiver, 'temp3.mp3')
-                                except Exception as e:
-                                    client.sendText(receiver, str(e))
-                            elif "tr:" in msg.text:
-                                try:
-                                    isi = msg.text.split(":")
-                                    translator = Translator()
-                                    hasil = translator.translate(isi[2], dest=isi[1])
-                                    A = hasil.text                               
-                                    client.sendText(receiver, str(A))
                                 except Exception as e:
                                     client.sendText(receiver, str(e))
                             elif text.lower() == '測速':
